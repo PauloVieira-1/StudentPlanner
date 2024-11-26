@@ -1,0 +1,79 @@
+#calendar{
+    background-color: #262626;
+    position: absolute;
+    height: 77%;
+    width: 100%;
+    float: right;
+    padding:5px;
+    margin: 15px;
+    border-radius: 20px;
+    padding-left: 10px;
+   }
+
+   .active{
+    visibility: hidden;
+}
+
+.transition-up {
+  animation-name: transition-up;
+  animation-duration: 0.7s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  transition: ease-out;
+  z-index: 0;
+} 
+
+   @keyframes transition-up {
+    from {
+      visibility: none;
+      opacity: 0;
+      transform: translateY(750px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  } 
+
+  .transition-down {
+    animation-name: transition-down;
+    animation-duration: 0.7s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    transition: ease-out;
+    z-index: 0;
+  }
+
+  @keyframes transition-down {
+    from {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(750px);
+      visibility: hidden;
+    }
+  } 
+
+  .transition-left {
+    animation-name: transition-left;
+    animation-duration: 0.7s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    transition: ease-out;
+    z-index: 0;
+  }
+
+  @keyframes transition-left {
+    from {
+      opacity: 0;
+      transform: translateX(750px);
+      visibility: hidden;
+
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  } 

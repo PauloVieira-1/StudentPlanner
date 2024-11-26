@@ -1,0 +1,17 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$custom-colors: (
+  "custom-color-grey": #262626,
+  "custom-color-grey-dark": #171717,
+  "custom-color-grey-text-emphasis": #d4d4d4,
+  "custom-color-grey-light": #323232,
+  "custom-color-grey-lighter": #525252,
+  "custom-color-orange": rgb(245, 118,55),
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+$primary: #3f75a0;
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";

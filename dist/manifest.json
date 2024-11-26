@@ -1,0 +1,33 @@
+{
+    "manifest_version": 3,
+    "name": "Hello Extensions",
+    "description": "Base Level Extension",
+    "version": "1.0",
+
+    "action": {
+      "default_icon": {
+      }
+    },
+
+    "chrome_url_overrides": {
+      "newtab": "index.html"
+    },
+
+    "permissions": [
+      "tabs",
+      "activeTab",
+      "storage",
+      "scripting"
+    ],
+
+    "background": {
+      "service_worker": "background.js"
+    },
+
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["contentScript.js"]
+      }
+    ]
+  }
