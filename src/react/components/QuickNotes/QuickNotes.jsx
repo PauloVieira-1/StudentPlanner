@@ -6,7 +6,7 @@ import NoteItem from "./NoteItem.jsx";
 import ModalElement from "../ModalElement/Modal.jsx";
 import { useEffect, useState } from "react";
 import { ModalContext } from "../../context/ModalContext.jsx";
-
+ 
 
 const initialValues = Object.freeze({
     title: "",
@@ -48,10 +48,13 @@ function QuickNotes() {
     const addNotes = () => {
 
         let current_id = idGenerator();
-        setList((prevList) => [...prevList, { key: current_id, ...noteData }]);
-        localStorage.setItem('notes', JSON.stringify([...List, { key: current_id, ...noteData }]));
-        setShow(false);
+        if(noteData.title !== "" && noteData.content !== ""){
+                setList((prevList) => [...prevList, { key: current_id, ...noteData }]);
+                localStorage.setItem('notes', JSON.stringify([...List, { key: current_id, ...noteData }]));
+            }
+             
         setNoteData(initialValues);
+        setShow(false);
 
     }
 
@@ -67,7 +70,7 @@ function QuickNotes() {
 
     return (
         <ModalContext.Provider value={{ show: false }}>
-            <Container className="rounded-4 bg-custom-color-grey-light ms-0 mt-5 me-5 pb-1 position-relative container-overflow " style={{maxHeight: "330px"}}>
+            <Container className="rounded-4 bg-custom-color-grey-light ms-0 mt-5 me-5 pb-1 position-relative container-overflow position-relative" style={{maxHeight: "20px !important"}}>
                 <Row className=""> 
                     <Col className="d-flex align-items-center me-0 pe-0" xs={9}>   
                     <h5 className="text-white pt-3 pb-1 px-2 text-start bg-custom-color-grey-light rounded-3">Quick Notes</h5>

@@ -2,9 +2,9 @@ import "./Navbar.css";
 import { Container, Row, Col } from "react-bootstrap";
 import QuickNotes from "../QuickNotes/QuickNotes.jsx";
 import Logo from "../../assets/Logo1.png";
-function Navbar({subjectFunction}) {
+function Navbar({subjectFunction, applicationFunction}) {
     return (
-        <div id="navbar" className="rounded-4 shadow p-3">
+        <div id="navbar" className="rounded-4 shadow p-3 mt-3">
             <Container>
                 <Row style={{minheight: "50px"}} className="bg-custom-color-grey-light rounded-3 text-start"> 
                     <Col xs={5} className="p-1 d-flex">
@@ -26,8 +26,8 @@ function Navbar({subjectFunction}) {
                     </button>
                 </li>
                 <li>
-                     <button>
-                         Notes
+                     <button onClick={applicationFunction}>
+                         Applications
                     </button>
                 </li>
                 <li><a>Aditional</a></li>

@@ -8,3 +8,10 @@ export const subjectModalContext = createContext({
     show: false,
 })  
 
+export const applicationModalContext = createContext({
+    show: false,
+})
+
+export const assignmentModelContext = createContext({
+    show: false
+})

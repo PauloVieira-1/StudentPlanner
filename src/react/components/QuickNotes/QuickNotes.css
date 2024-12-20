@@ -8,7 +8,6 @@
 .image-container { 
     position: relative; 
     display: inline-block; 
-    cursor: pointer;
 
 
 } 
@@ -16,12 +15,16 @@
 .default-image { 
     display: block; 
     cursor: pointer;
+    cursor: pointer;
+
 
 
 } 
  
 .hover-image { 
     display: none; 
+    cursor: pointer;
+
 
 
 } 
@@ -55,5 +58,7 @@
 }
 
 .container-overflow {
-    overflow-y: scroll;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    max-height: 278px;
 }

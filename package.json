@@ -53,6 +53,7 @@
     "react-dom": "^18.3.1",
     "sass": "^1.81.0",
     "sass-loader": "^16.0.3",
+    "sqlite": "^5.1.1",
     "style-loader": "^4.0.0"
   }
 }

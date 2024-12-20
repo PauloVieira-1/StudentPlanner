@@ -3,12 +3,12 @@
     background-color: #262626;
     position: absolute;
     height: 95%;
-    min-width: 220px;
     width: 20%;
     float:left;
     padding:5px;
-    margin: 15px;
+    margin: 15px !important;
     padding: 10px 10px 10px 10px;
+    overflow:hidden !important;
    }
 
    ul {

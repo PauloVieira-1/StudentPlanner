@@ -5,41 +5,54 @@ import '../../styles/colors.css'
 import Subjects from "./Subjects/Subjects.jsx";
 import { useState } from "react";
 import FeatureBox from "./FeatureBox/FeatureBox.jsx";
+import ToolMenu from "./ToolMenu/ToolMenu.jsx";
+import PinnedApplications from "./PinnedApplications/PinnedApplications.jsx";
 
 function App() {
 
     const [showSubjects, setShowSubjects] = useState(false)
+    const [showApplications, setShowApplications] = useState(false)
+
 
     const activateSubjects = () => {
       setShowSubjects(!showSubjects)
     }
 
+    const activateApplications = () => {
+      setShowApplications(!showApplications)
+    }
+
 
     return (
-            <Container className="ps-0 ms-0" style={{height: "100vh"}}>
-            <Row className="h-100">
-                <Col xs={3} className="d-flex flex-column">
-                <Navbar style={{flex: 1}} subjectFunction = {activateSubjects}
-                />   
-                </Col>
-                <Col xs={9} className="px-3 ms-0 mt-3 d-flex flex-column" style={{height: "100%"}}>
-                <Row className="mb-5">
-                    {/* <ToolMenu 
-                    button1 = {featureTools.button1}
-                    button2 = {featureTools.button2}
-                    button3 = {featureTools.button3}
-                    /> */}
-                </Row>
-                <Row className="mt-5 flex-grow-1">
-                <FeatureBox 
-                    title= 'Subjects'
-                    active = {showSubjects}
-                    component = {<Subjects/>}
-                    />         
-                    </Row>
-                </Col>
-            </Row>
-            </Container>      
+      <Container fluid className="p-0 mt-0" style={{height: "100%"}}>
+      <Row className="h-100 ms-0">
+        <Col xs={3} className="d-flex flex-column">
+          <Navbar style={{flex: 1}} subjectFunction={activateSubjects} applicationFunction={activateApplications}/>
+        </Col>
+        <Col xs={9} className="d-flex flex-column" style={{height: "100%"}}>
+          <Row className="mb-5">
+            <Col>
+              <ToolMenu />
+            </Col>
+          </Row>
+          <Row className="flex-grow-1 mt-5 me-5">
+            <Col>
+              <FeatureBox 
+                title='Subjects'
+                active={showSubjects}
+                component={<Subjects />}
+              />
+              <FeatureBox 
+                title='Applications'
+                active={showApplications}
+                component={<PinnedApplications />}
+              />         
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </Container>  
+         
     );
 }   
 
