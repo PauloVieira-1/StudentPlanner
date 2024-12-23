@@ -23,13 +23,17 @@ function SubjectBlock({remove, id, name}) {
     const [assignments, setAssignments] = useState([]);
     const [subjects, setSubjectData] = useState([]);
 
-
     useEffect(() => {
         const items = localStorage.getItem("subjects");
         if (items) {
-            setSubjectData(JSON.parse(items));
+            const itemsP = JSON.parse(items);
+            const matchingItem = itemsP.find(subject => subject.key === id);
+            if (matchingItem) {
+                setSubjectData([matchingItem]);
+                console.log(matchingItem);
+            }
         }
-    }, []); 
+    }, [id]); 
     
     useEffect(() => {
         subjects.forEach((item) => {
@@ -38,7 +42,10 @@ function SubjectBlock({remove, id, name}) {
             }
         });
 
-        localStorage.setItem("subjects", JSON.stringify(subjects));
+        const tempSubjects = JSON.parse(localStorage.getItem("subjects"))
+
+        localStorage.setItem("subjects", JSON.stringify(tempSubjects.filter((item) => item.key !== id).concat(subjects)));
+        
     }, [subjects, id]); 
     
     
@@ -60,8 +67,8 @@ function SubjectBlock({remove, id, name}) {
     };
 
     /**
-     * @param {string} itemID The id of the subject to add the assignment to.
-     * @param {Object} assignment The assignment to add.
+     * @param {string} itemID 
+     * @param {Object} assignment 
      */
     const addAssignment = (itemID, assignment) => {
         let current_id = idGenerator();
@@ -81,7 +88,11 @@ function SubjectBlock({remove, id, name}) {
         
         setAssignments((prevAssignments) => [...prevAssignments, {key: current_id, ...assignment}]);
 
-        localStorage.setItem("subjects", JSON.stringify(subjects));
+        // localStorage.setItem("subjects", JSON.stringify(subjects.map((item) => 
+        //     item.key === itemID 
+        //         ? { ...item, assignments: item.assignments ? [...item.assignments, {key: current_id, ...assignment}] : [{key: current_id, ...assignment}] }
+        //         : item
+        // )));
     };
 
     const removeAssignment = (itemID, assignmentID) => {
@@ -95,7 +106,7 @@ function SubjectBlock({remove, id, name}) {
         }));
 
         setAssignments((prevAssignments) => prevAssignments.filter((assignment) => assignment.key !== assignmentID));
-        localStorage.setItem("subjects", JSON.stringify(subjects));
+
 
         console.log("DONE")
     };

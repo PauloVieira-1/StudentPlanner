@@ -13,7 +13,7 @@ const initialValues = Object.freeze({
   })
 
   const idGenerator = () => Math.random() + 1 
-
+ 
 function PinnedApplications() {
 
     const [show, setShow] = useState(false)
@@ -36,7 +36,9 @@ function PinnedApplications() {
         localStorage.setItem('apps', JSON.stringify([...List, { key: current_id, ...appData }]));
         setShow(false);
         setAppData(initialValues);
-        console.log(List);
+
+        getFavIcon(appData.content);
+        console.log(appData);
 
     }
 
@@ -60,6 +62,42 @@ function PinnedApplications() {
             return preAppData
         });
     };
+
+    const getFavIcon = async (url) => {
+
+        // console.log(`https://${url}/favicon.ico`);
+        
+        // const response = await fetch(`https://${url}/favicon.ico`).then((response) => {
+        //     if (response.ok) {
+        //         return response.text;
+        //     }
+        //     throw new Error("Network response was not ok.");
+        // }).then((text) => {
+        //     const parser = new DOMParser();
+        //     const doc = parser.parseFromString(text, "text/html");
+
+        //     var img = doc.querySelector('img');
+        //     console.log(img);
+
+        //     return img;
+        // }).catch((error) => {
+        //     console.log(error);
+        // }); 
+
+        const respone = await fetch(`https://${url}`).then((response) => {
+            if (response.ok) {
+                return response.text;
+            }
+            throw new Error("Network response was not ok.");
+        }).then((text) => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, "text/html");
+
+            var img = doc.querySelector('link[rel="icon"]');
+            console.log(img);
+        })
+
+    }
         
 
     return (
@@ -71,7 +109,7 @@ function PinnedApplications() {
                 <Row style={{overflowY: "scroll", maxHeight: "450px"}} > 
                 {List.map((item) => {
                     return (
-                    <ApplicationBox name={item.title} link={item.content} removeFunction={removeApp} />
+                    <ApplicationBox key={item.key} name={item.title} link={item.content} removeFunction={removeApp} />
                     )
                 })}
                 </Row>

@@ -32,12 +32,15 @@ function Subjects(){
 
     }, [])
 
+    // useEffect(() => {
+    //     localStorage.setItem("subjects", JSON.stringify(subjects));
+    // }, [list]); 
 
     // FOR STORING SUBJECTS
 
     const handleAddtoDatabase = () => {
         let current_id = idGenerator();
-        // console.log(list);
+        console.log(list);
             setList((prev) => [...prev, {key: current_id, ...subjectData}]);
             localStorage.setItem("subjects", JSON.stringify([...list, {key: current_id, ...subjectData}]))
         setShow(false);
@@ -64,8 +67,6 @@ function Subjects(){
         });
     };
 
-    // FOR STORING ASSIGNMENTS
-
 
     return (
         <subjectModalContext.Provider value={{show: false}}>
@@ -83,7 +84,7 @@ function Subjects(){
                 </Col>
             </Row>
         </Container>
-        <ModalElement show={show}  closeFunction={handleClose} saveChanges={handleAddtoDatabase} handleChange={handleInputChange} title="What subject would you like to add?" element1="Name" element2="Link"/>
+        <ModalElement show={show}  closeFunction={handleClose} saveChanges={handleAddtoDatabase} handleChange={handleInputChange} title="What subject would you like to add?" element1="Name" />
         </subjectModalContext.Provider>
     )
 }

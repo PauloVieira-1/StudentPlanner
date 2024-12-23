@@ -16,7 +16,7 @@ function ModalElement(props) {
             <div className="mt-3">
               <form>
                 <h6><input autoComplete="off" className='px-2 pt-2' name="title" placeholder={props.element1} onChange={(e) => props.handleChange(e)} ></input></h6>
-                <p><input autoComplete="off" className='px-2' name="content" placeholder={props.element2} onChange={(e) => props.handleChange(e)}></input></p>
+                {props.element2 && <p><input autoComplete="off" className='px-2' name="content" placeholder={props.element2} onChange={(e) => props.handleChange(e)}></input></p>}
               </form>
             </div>
         </Modal.Body>
