@@ -5,37 +5,15 @@ import { useEffect, useState } from "react";
 import { subjectModalContext } from "../../context/ModalContext.jsx";
 
 function ToolMenu() {
-    // db = sqlite3.connect("Subjects.db")
-    // cur = db.cursor()
+
     
 
     const [show, setShow] = useState(false);
     const [search, setSearch] = useState("");
 
-    let clickHandler = () => {
-    }
     const handleClose = () => {
         setShow(false);
     }
-
-    
-    // if (button1 === "TEST_1") {
-    //     clickHandler = () => {
-    //         console.log("TEST_1")
-    //         setShow(true);
-    //     }
-    // }
-
-    // const saveChanges = (e) => {
-    //     cur.execute(/*
-    //         INSERT INTO subjects VALUES
-    //             (subject,
-    //             upcomming_assignments, 
-    //             tasks),
-    //             (,)
-    //         */
-    //     )
-    // }
 
 
     const searchHandler = (e) => {

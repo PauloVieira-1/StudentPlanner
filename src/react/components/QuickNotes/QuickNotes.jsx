@@ -51,10 +51,10 @@ function QuickNotes() {
         if(noteData.title !== "" && noteData.content !== ""){
                 setList((prevList) => [...prevList, { key: current_id, ...noteData }]);
                 localStorage.setItem('notes', JSON.stringify([...List, { key: current_id, ...noteData }]));
+                setNoteData(initialValues);
+                setShow(false);
             }
              
-        setNoteData(initialValues);
-        setShow(false);
 
     }
 
@@ -76,8 +76,8 @@ function QuickNotes() {
                     <h5 className="text-white pt-3 pb-1 px-2 text-start bg-custom-color-grey-light rounded-3">Quick Notes</h5>
                     </Col>
                     <Col xs={3} className="d-flex align-items-center image-container float-end">
-                        <img onClick={handleShow} className="float-end pt-2 default-image" src={UnfilledPlus} style={{minWidth: "60%", minHeight: "60%"}} alt="Logo"></img>
-                        <img  onClick={handleShow} className="float-end pt-2 hover-image" src={FilledPlus} style={{minWidth: "60%", minHeight: "60%"}} alt="Logo"></img>
+                        <img onClick={handleShow} className="float-end pt-2 default-image" src={UnfilledPlus} style={{minWidth: "22px", minHeight: "22px"}} alt="Logo"></img>
+                        <img  onClick={handleShow} className="float-end pt-2 hover-image" src={FilledPlus} style={{minWidth: "22px", minHeight: "22px"}} alt="Logo"></img>
                     </Col>
                 </Row>
                 <ul className="p-0 m-0 !important">

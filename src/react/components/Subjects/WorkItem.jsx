@@ -13,7 +13,7 @@ function WorkItem(props) {
                 <Col className="d-flex align-items-center justify-content-center p-0 ">
                     <div className="d-flex align-items-center justify-content-center image-container float-end">
                         <img className="float-end default-image hover-trash" src={emptyTrash} style={{minWidth: "25px", minHeight: "25px"}}  alt="Logo" ></img>
-                        <img  className="float-end hover-image" src={fullTrash} style={{minWidth: "25px", minHeight: "25px"}} alt="Logo" onClick={() => props.remove(props.item, props.assignmentId)}></img>
+                        <img  className="float-end hover-image" src={fullTrash} style={{minWidth: "25px", minHeight: "25px"}} alt="Logo" onClick={() => props.remove(props.item, props.assignmentId, props.type)}></img>
                     </div>
                 </Col>
             </Row>

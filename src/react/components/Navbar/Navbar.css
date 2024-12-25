@@ -4,9 +4,10 @@
     position: absolute;
     height: 95%;
     width: 20%;
+    min-width: 200px;
     float:left;
     padding:5px;
-    margin: 15px !important;
+    margin: 15px, 15px, 15px, 0px !important;
     padding: 10px 10px 10px 10px;
     overflow:hidden !important;
    }

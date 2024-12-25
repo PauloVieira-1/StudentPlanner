@@ -8,7 +8,7 @@ import SubjectBlock from "./SubjectBlock.jsx";
 
 
 const initialValues = Object.freeze({
-    name: "",
+    title: "",
 })
 
 const idGenerator = () => Math.random() + 1 
@@ -40,11 +40,13 @@ function Subjects(){
 
     const handleAddtoDatabase = () => {
         let current_id = idGenerator();
-        console.log(list);
+
+        if (subjectData.title !== ""){
             setList((prev) => [...prev, {key: current_id, ...subjectData}]);
             localStorage.setItem("subjects", JSON.stringify([...list, {key: current_id, ...subjectData}]))
         setShow(false);
         setSubjectData(initialValues);
+        }
 
     }
 
@@ -72,7 +74,7 @@ function Subjects(){
         <subjectModalContext.Provider value={{show: false}}>
         <Container className="pt-1 px-0 m-0">
             <Row>
-                <Col style={{overflowY: "scroll", maxHeight: "500px"}}>
+                <Col style={{overflowY: "scroll", maxHeight: "580px"}}>
                 {list.map((item) => <SubjectBlock key = {item.key} id = {item.key} remove = {removeSubject} name = {item.title}/>)}
                 </Col>
             <Col xs={1} className="px-2" >

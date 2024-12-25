@@ -13,5 +13,6 @@ export const applicationModalContext = createContext({
 })
 
 export const assignmentModelContext = createContext({
-    show: false
+    assignmentShow: false,
+    tasktShow: false
 })

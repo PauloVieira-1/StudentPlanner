@@ -1,11 +1,16 @@
 {
     "manifest_version": 3,
-    "name": "Hello Extensions",
-    "description": "Base Level Extension",
+    "name": "Class Compass",
+    "description": "Student Management System",
     "version": "1.0",
+
+  "icons": {
+    "16": "Logo1.png"
+  },
 
     "action": {
       "default_icon": {
+        "16":"Logo1.png"
       }
     },
 
@@ -17,7 +22,8 @@
       "tabs",
       "activeTab",
       "storage",
-      "scripting"
+      "scripting",
+      "favicon"
     ],
 
     "host_permissions": [
@@ -34,5 +40,14 @@
         "matches": ["<all_urls>"],
         "js": ["contentScript.js"]
       }
-    ]
+    ],
+
+    "web_accessible_resources": [
+    {
+      "resources": ["_favicon/*"],
+      "matches": ["<all_urls>"],
+      "extension_ids": ["*"]
+    }
+  ]
+  
   }

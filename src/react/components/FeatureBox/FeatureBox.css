@@ -2,12 +2,12 @@
     background-color: #262626;
     position: absolute;
     width: 100%;
-    float: right;
+    float: left;
     padding:5px;
-    margin: 15px;
+    margin: 18px, 15px, 15px, 5px !important;
     border-radius: 20px;
     padding-left: 10px;
-    height: 77%;
+    height: 90%;
    }
 
    .active{

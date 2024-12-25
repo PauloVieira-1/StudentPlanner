@@ -6,7 +6,7 @@ import ModalElement from "../ModalElement/Modal.jsx";
 import { applicationModalContext } from "../../context/ModalContext.jsx";
 import { useEffect, useState } from "react";
 
- 
+  
 const initialValues = Object.freeze({
     name: "",
     link: "",
@@ -37,9 +37,6 @@ function PinnedApplications() {
         setShow(false);
         setAppData(initialValues);
 
-        getFavIcon(appData.content);
-        console.log(appData);
-
     }
 
     const removeApp = (itemId) => {
@@ -63,39 +60,24 @@ function PinnedApplications() {
         });
     };
 
-    const getFavIcon = async (url) => {
 
-        // console.log(`https://${url}/favicon.ico`);
+     /**
+     * 
+     * @param {string} url - The URL of the webpage to get the favicon for.
+     * @returns {string} - The URL to fetch the favicon.
+     */
+
+    const getFavIcon = (url) => {
+
+        let searchUrl = `https://${url}`
         
-        // const response = await fetch(`https://${url}/favicon.ico`).then((response) => {
-        //     if (response.ok) {
-        //         return response.text;
-        //     }
-        //     throw new Error("Network response was not ok.");
-        // }).then((text) => {
-        //     const parser = new DOMParser();
-        //     const doc = parser.parseFromString(text, "text/html");
+        const urlLink = new URL(chrome.runtime.getURL("/_favicon/"));
+        urlLink.searchParams.set("pageUrl", searchUrl);
+        urlLink.searchParams.set("size", "32");
 
-        //     var img = doc.querySelector('img');
-        //     console.log(img);
+        // console.log(urlLink.toString());
 
-        //     return img;
-        // }).catch((error) => {
-        //     console.log(error);
-        // }); 
-
-        const respone = await fetch(`https://${url}`).then((response) => {
-            if (response.ok) {
-                return response.text;
-            }
-            throw new Error("Network response was not ok.");
-        }).then((text) => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(text, "text/html");
-
-            var img = doc.querySelector('link[rel="icon"]');
-            console.log(img);
-        })
+        return urlLink.toString();
 
     }
         
@@ -106,19 +88,20 @@ function PinnedApplications() {
         <Container>
             <Row >
                 <Col xs={11} >
-                <Row style={{overflowY: "scroll", maxHeight: "450px"}} > 
+                <Row style={{overflowY: "scroll", maxHeight: "570px"}} > 
                 {List.map((item) => {
                     return (
-                    <ApplicationBox key={item.key} name={item.title} link={item.content} removeFunction={removeApp} />
+                    <ApplicationBox icon={getFavIcon(item.content)} key={item.key} id={item.key} name={item.title} link={item.content} removeFunction={removeApp} />
                     )
                 })}
                 </Row>
                 </Col>
                 <Col xs={1} className="px-2">
                 <div className="image-container float-end m-2" style={{minWidth: "100%"}}>
-                        <img className="float-end pt-2 default-image" src={UnfilledPlus} style={{minWidth: "50%", minHeight: "50%"}} onClick={handleShow} alt="Logo"></img>
-                        <img  className="float-end pt-2 hover-image" src={FilledPlus} style={{minWidth: "50%", minHeight: "50%"}} onClick={handleShow} alt="Logo"></img>
-                </div>
+                                        
+                                        <img className="float-end pt-2 default-image me-2" src={UnfilledPlus} style={{minWidth: "30px", minHeight: "30px"}} onClick={handleShow} alt="Logo"></img>
+                                        <img  className="float-end pt-2 hover-image me-2" src={FilledPlus} style={{minWidth: "30px", minHeight: "30px"}} onClick={handleShow} alt="Logo"></img>
+                                </div>
                 </Col>
             </Row>
         </Container>

@@ -10,23 +10,25 @@ import PinnedApplications from "./PinnedApplications/PinnedApplications.jsx";
 
 function App() {
 
-    const [showSubjects, setShowSubjects] = useState(false)
+    const [showSubjects, setShowSubjects] = useState(true)
     const [showApplications, setShowApplications] = useState(false)
 
 
     const activateSubjects = () => {
       setShowSubjects(!showSubjects)
+      setShowApplications(!showApplications)
     }
 
     const activateApplications = () => {
       setShowApplications(!showApplications)
+      setShowSubjects(!showSubjects)
     }
 
 
     return (
       <Container fluid className="p-0 mt-0" style={{height: "100%"}}>
       <Row className="h-100 ms-0">
-        <Col xs={3} className="d-flex flex-column">
+        <Col xs={3} className="d-flex flex-column ps-0">
           <Navbar style={{flex: 1}} subjectFunction={activateSubjects} applicationFunction={activateApplications}/>
         </Col>
         <Col xs={9} className="d-flex flex-column" style={{height: "100%"}}>
