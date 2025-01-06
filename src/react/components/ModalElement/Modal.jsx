@@ -1,57 +1,95 @@
-import { useContext } from "react";
-import { Button, Modal } from "react-bootstrap";
-import { ModalContext } from "../../context/ModalContext.jsx";
+import { Button, Container, Modal } from "react-bootstrap";
 import "./Modal.css";
+import { container, Row, Col } from "react-bootstrap";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import { useEffect } from "react";
 
 function ModalElement(props) {
+  const renderTooltip = (props, element1, element2) => (
+    <Tooltip id="button-tooltip" {...props}>
+      {`Must add ${element1} ${element2 ? "and" : ""} ${element2 ? element2 : ""} to save`}
+    </Tooltip>
+  );
+
+  const BUTTON_1 = (
+    <OverlayTrigger
+      placement="right"
+      delay={{ show: 250, hide: 400 }}
+      overlay={renderTooltip(props, props.element1, props.element2)}
+    >
+      <Button
+        className="text-white rounded-5 px-4"
+        variant="custom-color-orange"
+        onClick={() => {
+          props.saveChanges();
+        }}
+      >
+        Save Note
+      </Button>
+    </OverlayTrigger>
+  );
+
+  const BUTTON_2 = (
+    <Button
+      className="text-white rounded-5 px-4"
+      variant="custom-color-orange"
+      onClick={() => {
+        props.saveChanges();
+      }}
+    >
+      Save Note
+    </Button>
+  );
+
   return (
-    <Modal show={props.show} onHide={props.closeFunction} className="shadow">
-      <Modal.Body className="bg-custom-color-grey text-custom-color-grey-text-emphasis rounded-top-2">
-        <Modal.Title className="text-custom-color-grey-text-emphasis">
-          {props.title}
-        </Modal.Title>
-        <div className="mt-3">
-          <form>
-            <h6>
-              <input
-                autoComplete="off"
-                className="px-2 pt-2"
-                name="title"
-                placeholder={props.element1}
-                onChange={(e) => props.handleChange(e)}
-              ></input>
-            </h6>
-            {props.element2 && (
-              <p>
-                <input
-                  autoComplete="off"
-                  className="px-2"
-                  name="content"
-                  placeholder={props.element2}
-                  onChange={(e) => props.handleChange(e)}
-                ></input>
-              </p>
-            )}
-          </form>
-        </div>
-      </Modal.Body>
-      <Modal.Footer className="bg-custom-color-grey">
-        <Button
-          className="rounded-5 px-4 rounded-5"
-          variant="secondary"
-          onClick={props.closeFunction}
-        >
-          Close
-        </Button>
-        <Button
-          className="text-white rounded-5 px-4"
-          variant="custom-color-orange"
-          onClick={() => props.saveChanges()}
-        >
-          Save Note
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <>
+      <Modal show={props.show} onHide={props.closeFunction} className="shadow">
+        <Container>
+          <Row className="bg-custom-color-grey rounded-2">
+            <Modal.Body className="bg-custom-color-grey text-custom-color-grey-text-emphasis rounded-top-2">
+              <Modal.Title className="text-custom-color-grey-text-emphasis">
+                {props.title}
+              </Modal.Title>
+              <div className="mt-3">
+                <form>
+                  <h6>
+                    <input
+                      autoComplete="off"
+                      className="px-2 pt-2"
+                      name="title"
+                      placeholder={props.element1}
+                      onChange={(e) => props.handleChange(e)}
+                    ></input>
+                  </h6>
+                  {props.element2 && (
+                    <p>
+                      <input
+                        autoComplete="off"
+                        className="px-2"
+                        name="content"
+                        placeholder={props.element2}
+                        onChange={(e) => props.handleChange(e)}
+                      ></input>
+                    </p>
+                  )}
+                </form>
+              </div>
+            </Modal.Body>
+            <Modal.Footer className="bg-custom-color-grey">
+              <Button
+                className="rounded-5 px-4 rounded-5"
+                variant="secondary"
+                onClick={props.closeFunction}
+              >
+                Close
+              </Button>
+              {props.empty ? BUTTON_1 : BUTTON_2}
+            </Modal.Footer>
+          </Row>
+        </Container>
+      </Modal>
+    </>
   );
 }
 

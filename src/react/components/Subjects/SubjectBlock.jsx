@@ -7,11 +7,6 @@ import { useEffect, useState } from "react";
 import ModalElement from "../ModalElement/Modal.jsx";
 import { assignmentModelContext } from "../../context/ModalContext.jsx";
 
-const initialValues = Object.freeze({
-  title: "",
-  content: "",
-});
-
 const idGenerator = () => Math.random() + 1;
 
 function SubjectBlock({ remove, id, name }) {
@@ -21,6 +16,7 @@ function SubjectBlock({ remove, id, name }) {
   const [assignments, setAssignments] = useState([]);
   const [currentObject, setObject] = useState([]);
   const [subjects, setSubjectData] = useState([]);
+  const [showMesage, setShowMessage] = useState(true);
 
   const handleTaskClose = () => setTaskShow(false);
   const handleAssignmentClose = () => setAssignmentShow(false);
@@ -73,6 +69,8 @@ function SubjectBlock({ remove, id, name }) {
 
       return preAssignmentData;
     });
+
+    setShowMessage(false);
   };
 
   /**
@@ -134,6 +132,8 @@ function SubjectBlock({ remove, id, name }) {
     } else {
       console.warn("Unknown label:", label);
     }
+
+    setShowMessage(true);
   };
 
   const removeLabel = (itemID, objectID, label) => {
@@ -263,6 +263,7 @@ function SubjectBlock({ remove, id, name }) {
           closeFunction={handleAssignmentClose}
           saveChanges={() => addLabel(id, currentObject, "assignment")}
           handleChange={handleInputChange}
+          empty={showMesage}
         ></ModalElement>
         <ModalElement
           show={taskShow}
@@ -272,6 +273,7 @@ function SubjectBlock({ remove, id, name }) {
           title="Add Task"
           element1="Name"
           element2="Date"
+          empty={showMesage}
         />
       </assignmentModelContext.Provider>
     </>

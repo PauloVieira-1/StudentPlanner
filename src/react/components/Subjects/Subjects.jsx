@@ -16,6 +16,7 @@ function Subjects() {
   const [show, setShow] = useState(false);
   const [subjectData, setSubjectData] = useState(INITIAL_VALUES);
   const [list, setList] = useState([]);
+  const [showMesage, setShowMessage] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -37,8 +38,10 @@ function Subjects() {
         "subjects",
         JSON.stringify([...list, { key: current_id, ...subjectData }]),
       );
+
       setShow(false);
       setSubjectData(INITIAL_VALUES);
+      setShowMessage(true);
     }
   };
 
@@ -69,6 +72,7 @@ function Subjects() {
 
       return preAppData;
     });
+    setShowMessage(false);
   };
 
   return (
@@ -115,6 +119,7 @@ function Subjects() {
         handleChange={handleInputChange}
         title="What subject would you like to add?"
         element1="Name"
+        empty={showMesage}
       />
     </subjectModalContext.Provider>
   );
