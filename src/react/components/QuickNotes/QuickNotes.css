@@ -1,64 +1,51 @@
 .notes-box {
-   position: relative;
-   height: 30%;
-
+  position: relative;
+  height: 30%;
 }
 
+.image-container {
+  position: relative;
+  display: inline-block;
+}
 
-.image-container { 
-    position: relative; 
-    display: inline-block; 
+.default-image {
+  display: block;
+  cursor: pointer;
+  cursor: pointer;
+}
 
+.hover-image {
+  display: none;
+  cursor: pointer;
+}
 
-} 
- 
-.default-image { 
-    display: block; 
-    cursor: pointer;
-    cursor: pointer;
+.image-container:hover .default-image {
+  display: none;
+  animation: plus 0.5s;
+}
 
-
-
-} 
- 
-.hover-image { 
-    display: none; 
-    cursor: pointer;
-
-
-
-} 
- 
-.image-container:hover .default-image { 
-    display: none; 
-    animation: plus 0.5s;
-
-
-} 
- 
-.image-container:hover .hover-image { 
-    display: block; 
-
+.image-container:hover .hover-image {
+  display: block;
 }
 
 .hover-image:active {
-    animation: plus 0.5s;
+  animation: plus 0.5s;
 }
 
 @keyframes plus {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.5);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .container-overflow {
-    overflow-y: scroll !important;
-    overflow-x: hidden !important;
-    max-height: 278px;
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  max-height: 278px;
 }

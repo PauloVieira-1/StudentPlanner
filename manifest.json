@@ -1,53 +1,43 @@
 {
-    "manifest_version": 3,
-    "name": "Class Compass",
-    "description": "Student Management System",
-    "version": "1.0",
+  "manifest_version": 3,
+  "name": "Class Compass",
+  "description": "Student Management System",
+  "version": "1.0",
 
   "icons": {
     "16": "Logo1.png"
   },
 
-    "action": {
-      "default_icon": {
-        "16":"Logo1.png"
-      }
-    },
+  "action": {
+    "default_icon": {
+      "16": "Logo1.png"
+    }
+  },
 
-    "chrome_url_overrides": {
-      "newtab": "index.html"
-    },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
 
-    "permissions": [
-      "tabs",
-      "activeTab",
-      "storage",
-      "scripting",
-      "favicon"
-    ],
+  "permissions": ["tabs", "activeTab", "storage", "scripting", "favicon"],
 
-    "host_permissions": [
-      "http://*/*",
-      "https://*/*"
-    ],
+  "host_permissions": ["http://*/*", "https://*/*"],
 
-    "background": {
-      "service_worker": "background.js"
-    },
+  "background": {
+    "service_worker": "background.js"
+  },
 
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["contentScript.js"]
-      }
-    ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"]
+    }
+  ],
 
-    "web_accessible_resources": [
+  "web_accessible_resources": [
     {
       "resources": ["_favicon/*"],
       "matches": ["<all_urls>"],
       "extension_ids": ["*"]
     }
   ]
-  
-  }
+}

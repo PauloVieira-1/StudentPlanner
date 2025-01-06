@@ -1,100 +1,82 @@
-
-:root{
-    background-color: #191919;
-    height: 100%;
-    padding: 15px;
+:root {
+  background-color: #191919;
+  height: 100%;
+  padding: 15px;
 }
-#root{
-    background-color: #191919;
-    height: 100%;
-
+#root {
+  background-color: #191919;
+  height: 100%;
 }
 
-body{
-height: 100%;
-overflow-y: hidden;
-overflow-x: hidden;
-
+body {
+  height: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
-
 
 .img-effect {
-    transition: all 0.4s ease-out;
-  }
-  
-  .img-effect:hover {
-    transform: scale(1.02);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-  
-  
+  transition: all 0.4s ease-out;
+}
 
-.image-container { 
-    position: relative; 
-    display: inline-block; 
+.img-effect:hover {
+  transform: scale(1.02);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
+.image-container {
+  position: relative;
+  display: inline-block;
+}
 
-} 
- 
-.default-image { 
-    display: block; 
-    cursor: pointer;
+.default-image {
+  display: block;
+  cursor: pointer;
+}
 
+.hover-image {
+  display: none;
+  cursor: pointer;
+}
 
-} 
- 
-.hover-image { 
-    display: none; 
-    cursor: pointer;
+.image-container:hover .default-image {
+  display: none !important;
+  animation: plus 0.5s;
+}
 
-
-
-} 
- 
-.image-container:hover .default-image { 
-    display: none !important; 
-    animation: plus 0.5s;
-
-
-} 
- 
-.image-container:hover .hover-image { 
-    display: block; 
-
+.image-container:hover .hover-image {
+  display: block;
 }
 
 .hover-image:active {
-    animation: plus 0.5s;
+  animation: plus 0.5s;
 }
 
 @keyframes plus {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.5);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .container-overflow {
-    overflow-y: scroll !important;
-    overflow-x: hidden !important;
-    max-height: 278px;
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+  max-height: 278px;
 }
 
-.hover-trash{
-    display: none !important;
+.hover-trash {
+  display: none !important;
 }
 
-
-.container-hidden:hover .hover-trash{
-    display: block  !important;
+.container-hidden:hover .hover-trash {
+  display: block !important;
 }
 
-.image-container:hover .hover-trash{ 
-    display: none !important;
+.image-container:hover .hover-trash {
+  display: none !important;
 }
-
