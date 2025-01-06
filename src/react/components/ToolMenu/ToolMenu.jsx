@@ -1,8 +1,10 @@
 import "./ToolMenu.css";
 import { Button } from "react-bootstrap";
 import ModalElement from "../ModalElement/Modal.jsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Seacrh from "../../assets/search.svg";
 import { subjectModalContext } from "../../context/ModalContext.jsx";
+import { Container } from "react-bootstrap";
 
 function ToolMenu() {
   const [show, setShow] = useState(false);
@@ -15,8 +17,9 @@ function ToolMenu() {
   const searchHandler = (e) => {
     e.preventDefault();
     let searchTerm = `https://www.google.com/search?q=${search}`;
-    window.location.href = searchTerm;
-    console.log(searchTerm);
+    if (search !== ""){
+      window.location.href = searchTerm;
+    }
   };
 
   return (
@@ -36,9 +39,10 @@ function ToolMenu() {
           variant="outline-custom-color-orange"
           type="submit"
           form="search"
-          className="rounded-5 text-white px-5 mx-1 ms-auto"
+          className="rounded-5 text-white px-2 mx-2 py-2 ms-auto"
         >
-          Search
+          <img className="float-end  default-image " src={Seacrh} style={{ minWidth: "13px", minHeight: "13px" }} alt="Logo">
+          </img>
         </Button>
       </div>
       <ModalElement

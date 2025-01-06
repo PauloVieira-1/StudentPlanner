@@ -10,6 +10,7 @@ import { assignmentModelContext } from "../../context/ModalContext.jsx";
 const idGenerator = () => Math.random() + 1;
 
 function SubjectBlock({ remove, id, name }) {
+  
   const [assignmentShow, setAssignmentShow] = useState(false);
   const [taskShow, setTaskShow] = useState(false);
   const [task, setTask] = useState([]);

@@ -34,7 +34,9 @@ function Navbar({ subjectFunction, applicationFunction }) {
           <a>Coming Soon</a>
         </li>
       </ul>
+      <Container>
       <QuickNotes />
+      </Container>
     </div>
   );
 }

@@ -1,13 +1,12 @@
 import { Button, Container, Modal } from "react-bootstrap";
 import "./Modal.css";
-import { container, Row, Col } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { useEffect } from "react";
 
 function ModalElement(props) {
   const renderTooltip = (props, element1, element2) => (
-    <Tooltip id="button-tooltip" {...props}>
+    <Tooltip id="button-tooltip" className="bg-custom-color-grey" {...props}>
       {`Must add ${element1} ${element2 ? "and" : ""} ${element2 ? element2 : ""} to save`}
     </Tooltip>
   );
