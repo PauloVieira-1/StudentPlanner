@@ -7,7 +7,7 @@ function WorkItem(props) {
     <Container className="rounded-3 py-2 my-2 text-custom-color-grey-text-emphasis bg-custom-color-grey-lighter2 container-hidden">
       <Row>
         <Col xs={11}>
-          <h6>{props.title}</h6>
+          <h6>{props.title}</h6> 
           <p>{props.content}</p>
         </Col>
         <Col className="d-flex align-items-center justify-content-center p-0 ">

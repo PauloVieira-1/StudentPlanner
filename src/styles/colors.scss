@@ -9,6 +9,15 @@ $custom-colors: (
   "custom-color-grey-lighter": #424242,
   "custom-color-grey-lighter2": #616161,
   "custom-color-orange": rgb(245, 118, 55),
+
+  "custom-color-red": #cc5454,
+  "custom-color-red-dark": #833939,
+
+  "custom-color-green-dark": #3e7748,
+  "custom-color-green": #5c9e5f,
+
+  "custom-color-blue": #4f86b1,
+  "custom-color-blue-dark": #356388,
 );
 
 $theme-colors: map-merge($theme-colors, $custom-colors);

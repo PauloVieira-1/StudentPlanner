@@ -7,20 +7,34 @@ import { useState } from "react";
 import FeatureBox from "./FeatureBox/FeatureBox.jsx";
 import ToolMenu from "./ToolMenu/ToolMenu.jsx";
 import PinnedApplications from "./PinnedApplications/PinnedApplications.jsx";
+import ReminderHolder from "./Reminders/ReminderHolder.jsx";
 
 function App() {
   const [showSubjects, setShowSubjects] = useState(true);
   const [showApplications, setShowApplications] = useState(false);
-
+  const [showReminders, setReminders] = useState(false);
+  
   const activateSubjects = () => {
-    setShowSubjects(!showSubjects);
-    setShowApplications(!showApplications);
+    setShowSubjects(true);
+    setShowApplications(false);
+    setReminders(false)
+
   };
 
   const activateApplications = () => {
-    setShowApplications(!showApplications);
-    setShowSubjects(!showSubjects);
+    setShowSubjects(false);
+    setShowApplications(true);
+    setReminders(false)
+
   };
+
+  const activateReminders = () => {
+    setShowSubjects(false);
+    setShowApplications(false);
+    setReminders(true)
+
+  };
+
 
   return (
     <Container fluid className="p-0 mt-0" style={{ height: "100%" }}>
@@ -30,6 +44,7 @@ function App() {
             style={{ flex: 1 }}
             subjectFunction={activateSubjects}
             applicationFunction={activateApplications}
+            remindersFunction={activateReminders}
           />
         </Col>
         <Col xs={9} className="d-flex flex-column" style={{ height: "100%" }}>
@@ -49,6 +64,11 @@ function App() {
                 title="Applications"
                 active={showApplications}
                 component={<PinnedApplications />}
+              />
+              <FeatureBox
+                title="Reminder"
+                active={showReminders}
+                component={<ReminderHolder />}
               />
             </Col>
           </Row>

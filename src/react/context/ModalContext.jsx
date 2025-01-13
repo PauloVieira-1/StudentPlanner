@@ -16,3 +16,7 @@ export const assignmentModelContext = createContext({
   assignmentShow: false,
   tasktShow: false,
 });
+
+export const reminderModelContext = createContext({
+  reminderShow: false,
+});

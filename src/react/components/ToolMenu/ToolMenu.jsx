@@ -41,7 +41,7 @@ function ToolMenu() {
           form="search"
           className="rounded-5 text-white px-2 mx-2 py-2 ms-auto"
         >
-          <img className="float-end  default-image " src={Seacrh} style={{ minWidth: "13px", minHeight: "13px" }} alt="Logo">
+          <img className="float-end  default-image " src={Seacrh} style={{ minWidth: "9px", minHeight: "9px" }} alt="Logo">
           </img>
         </Button>
       </div>

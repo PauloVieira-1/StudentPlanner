@@ -72,6 +72,17 @@ function ModalElement(props) {
                       ></input>
                     </p>
                   )}
+                  {props.element3 && (
+                    <p>
+                      <input
+                        autoComplete="off"
+                        className="px-2"
+                        name="date"
+                        placeholder={props.element3}
+                        onChange={(e) => props.handleChange(e)}
+                      ></input>
+                    </p>
+                  )}
                 </form>
               </div>
             </Modal.Body>
