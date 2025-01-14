@@ -5,6 +5,7 @@ import FilledPlus from "../../assets/plus-circle-fill.svg";
 import ModalElement from "../ModalElement/Modal.jsx";
 import { applicationModalContext } from "../../context/ModalContext.jsx";
 import { useEffect, useState } from "react";
+import Empty from "../Other/Empty.jsx";
 
 const initialValues = Object.freeze({
   name: "",
@@ -17,6 +18,8 @@ function PinnedApplications() {
   const [show, setShow] = useState(false);
   const [list, setList] = useState([]);
   const [appData, setAppData] = useState({ ...initialValues });
+  const [emptyApplications, setEmptyApplications] = useState(false);
+  const [showMesage, setShowMessage] = useState(true);
 
   useEffect(() => {
     const storedNotes = localStorage.getItem("apps");
@@ -24,6 +27,14 @@ function PinnedApplications() {
       setList(JSON.parse(storedNotes));
     }
   }, []);
+
+  useEffect(() => {
+    if (list !== null && list.length > 0) {
+      setEmptyApplications(true);
+    } else {
+      setEmptyApplications(false);
+    }
+  }, [list]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -36,6 +47,7 @@ function PinnedApplications() {
       JSON.stringify([...list, { key: current_id, ...appData }]),
     );
     setShow(false);
+    setShowMessage(true);
     setAppData(initialValues);
   };
 
@@ -66,6 +78,7 @@ function PinnedApplications() {
 
       return preAppData;
     });
+    setShowMessage(false);
   };
 
   /**
@@ -93,18 +106,22 @@ function PinnedApplications() {
           <Row>
             <Col xs={11}>
               <Row style={{ overflowY: "scroll", maxHeight: "570px" }}>
-                {list.map((item) => {
-                  return (
-                    <ApplicationBox
-                      icon={getFavIcon(item.content)}
-                      key={item.key}
-                      id={item.key}
-                      name={item.title}
-                      link={item.content}
-                      removeFunction={removeApp}
-                    />
-                  );
-                })}
+                {emptyApplications ? (
+                  list.map((item) => {
+                    return (
+                      <ApplicationBox
+                        icon={getFavIcon(item.content)}
+                        key={item.key}
+                        id={item.key}
+                        name={item.title}
+                        link={item.content}
+                        removeFunction={removeApp}
+                      />
+                    );
+                  })
+                ) : (
+                  <Empty title={"applications"} />
+                )}
               </Row>
             </Col>
             <Col xs={1} className="px-2">
@@ -138,6 +155,7 @@ function PinnedApplications() {
           title="What link would you like to add?"
           element1="Name"
           element2="Link"
+          emptyElement={showMesage}
         />
       </applicationModalContext.Provider>
     </>

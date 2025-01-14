@@ -10,7 +10,6 @@ import { assignmentModelContext } from "../../context/ModalContext.jsx";
 const idGenerator = () => Math.random() + 1;
 
 function SubjectBlock({ remove, id, name }) {
-  
   const [assignmentShow, setAssignmentShow] = useState(false);
   const [taskShow, setTaskShow] = useState(false);
   const [task, setTask] = useState([]);
@@ -47,7 +46,7 @@ function SubjectBlock({ remove, id, name }) {
     const tempSubjects = JSON.parse(localStorage.getItem("subjects"));
 
     localStorage.setItem(
-      "subje cts",
+      "subjects",
       JSON.stringify(
         tempSubjects.filter((item) => item.key !== id).concat(subjects),
       ),
@@ -134,6 +133,7 @@ function SubjectBlock({ remove, id, name }) {
       console.warn("Unknown label:", label);
     }
 
+    console.log(subjects);
     setShowMessage(true);
   };
 
@@ -160,7 +160,11 @@ function SubjectBlock({ remove, id, name }) {
       });
     });
 
-    setObject((prevTasks) => prevTasks.filter((task) => task.key !== objectID));
+    setObject(
+      (prevTasks) =>
+        Array.isArray(prevTasks) &&
+        prevTasks?.filter((task) => task.key !== objectID),
+    );
   };
 
   return (
@@ -264,7 +268,7 @@ function SubjectBlock({ remove, id, name }) {
           closeFunction={handleAssignmentClose}
           saveChanges={() => addLabel(id, currentObject, "assignment")}
           handleChange={handleInputChange}
-          empty={showMesage}
+          emptyElement={showMesage}
         ></ModalElement>
         <ModalElement
           show={taskShow}
@@ -274,7 +278,7 @@ function SubjectBlock({ remove, id, name }) {
           title="Add Task"
           element1="Name"
           element2="Date"
-          empty={showMesage}
+          emptyElement={showMesage}
         />
       </assignmentModelContext.Provider>
     </>

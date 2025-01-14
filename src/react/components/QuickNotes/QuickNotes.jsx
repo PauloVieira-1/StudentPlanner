@@ -134,7 +134,7 @@ function QuickNotes() {
         title="What would you like to take note of?"
         element1="Title"
         element2="Note"
-        empty={showMesage}
+        emptyElement={showMesage}
       />
     </ModalContext.Provider>
   );

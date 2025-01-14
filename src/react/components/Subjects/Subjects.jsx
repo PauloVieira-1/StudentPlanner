@@ -5,6 +5,7 @@ import { subjectModalContext } from "../../context/ModalContext.jsx";
 import ModalElement from "../ModalElement/Modal.jsx";
 import { useEffect, useState } from "react";
 import SubjectBlock from "./SubjectBlock.jsx";
+import Empty from "../Other/Empty.jsx";
 
 const INITIAL_VALUES = Object.freeze({
   title: "",
@@ -17,6 +18,7 @@ function Subjects() {
   const [subjectData, setSubjectData] = useState(INITIAL_VALUES);
   const [list, setList] = useState([]);
   const [showMesage, setShowMessage] = useState(true);
+  const [subjectDisplay, setSubjectDisplay] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -29,33 +31,13 @@ function Subjects() {
     }
   }, []);
 
-  const handleAddtoDatabase = () => {
-    let current_id = idGenerator();
-
-    if (subjectData.title !== "") {
-      setList((prev) => [...prev, { key: current_id, ...subjectData }]);
-      localStorage.setItem(
-        "subjects",
-        JSON.stringify([...list, { key: current_id, ...subjectData }]),
-      );
-
-      setShow(false);
-      setSubjectData(INITIAL_VALUES);
-      setShowMessage(true);
+  useEffect(() => {
+    if (list !== null && list.length > 0) {
+      setSubjectDisplay(true);
+    } else {
+      setSubjectDisplay(false);
     }
-  };
-
-  const removeSubject = (itemID) => {
-    setList((prevList) => {
-      const updatedList = prevList.filter((item) => item.key !== itemID);
-      return updatedList;
-    });
-
-    localStorage.setItem(
-      "subjects",
-      JSON.stringify(list.filter((item) => item.key !== itemID)),
-    );
-  };
+  }, [list]);
 
   /**
    *
@@ -75,20 +57,53 @@ function Subjects() {
     setShowMessage(false);
   };
 
+  const handleAddtoDatabase = () => {
+    let current_id = idGenerator();
+
+    if (subjectData.title !== "") {
+      const newList = [...list, { key: current_id, ...subjectData }];
+
+      setList(newList);
+      localStorage.setItem("subjects", JSON.stringify(newList));
+
+      setShow(false);
+      setSubjectData(INITIAL_VALUES);
+      setShowMessage(true);
+    }
+  };
+
+  /**
+   * @param {Object} e
+   * @param {String} e.target.name
+   * @param {String} e.target.value
+   */
+
+  const removeSubject = (itemID) => {
+    const updatedList = list.filter((item) => item.key !== itemID);
+
+    setList(updatedList);
+
+    localStorage.setItem("subjects", JSON.stringify(updatedList));
+  };
+
   return (
     <subjectModalContext.Provider value={{ show: false }}>
       <Container className="pt-1 px-0 m-0">
         <Row>
-          <Col style={{ overflowY: "scroll", maxHeight: "580px" }}>
-            {list.map((item) => (
-              <SubjectBlock
-                key={item.key}
-                id={item.key}
-                remove={removeSubject}
-                name={item.title}
-              />
-            ))}
-          </Col>
+          {subjectDisplay ? (
+            <Col style={{ overflowY: "scroll", maxHeight: "580px" }}>
+              {list.map((item) => (
+                <SubjectBlock
+                  key={item.key}
+                  id={item.key}
+                  remove={removeSubject}
+                  name={item.title}
+                />
+              ))}
+            </Col>
+          ) : (
+            <Empty title="subjects" />
+          )}
           <Col xs={1} className="px-2">
             <div
               className="image-container float-end m-2"
@@ -119,7 +134,7 @@ function Subjects() {
         handleChange={handleInputChange}
         title="What subject would you like to add?"
         element1="Name"
-        empty={showMesage}
+        emptyElement={showMesage}
       />
     </subjectModalContext.Provider>
   );

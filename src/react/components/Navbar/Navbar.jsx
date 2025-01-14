@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { Container, Row } from "react-bootstrap";
 import QuickNotes from "../QuickNotes/QuickNotes.jsx";
 import Logo from "../../assets/Logo.png";
-function Navbar({ subjectFunction, applicationFunction, remindersFunction}) {
+function Navbar({ subjectFunction, applicationFunction, remindersFunction }) {
   return (
     <div id="navbar" className="rounded-4 shadow p-3 mt-1 mb-5">
       <Container>
@@ -35,7 +35,7 @@ function Navbar({ subjectFunction, applicationFunction, remindersFunction}) {
         </li>
       </ul>
       <Container>
-      <QuickNotes />
+        <QuickNotes />
       </Container>
     </div>
   );

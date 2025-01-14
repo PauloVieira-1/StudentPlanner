@@ -4,7 +4,7 @@ import { Row } from "react-bootstrap";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
-function ModalElement(props) {
+function ModalElement({ closeFunction, saveChanges, handleChange, ...props }) {
   const renderTooltip = (props, element1, element2) => (
     <Tooltip id="button-tooltip" className="bg-custom-color-grey" {...props}>
       {`Must add ${element1} ${element2 ? "and" : ""} ${element2 ? element2 : ""} to save`}
@@ -19,9 +19,9 @@ function ModalElement(props) {
     >
       <Button
         className="text-white rounded-5 px-4"
-        variant="custom-color-orange"
+        variant="custom-color-orange-2"
         onClick={() => {
-          props.saveChanges();
+          saveChanges();
         }}
       >
         Save Note
@@ -32,9 +32,9 @@ function ModalElement(props) {
   const BUTTON_2 = (
     <Button
       className="text-white rounded-5 px-4"
-      variant="custom-color-orange"
+      variant="custom-color-orange-2"
       onClick={() => {
-        props.saveChanges();
+        saveChanges();
       }}
     >
       Save Note
@@ -52,23 +52,24 @@ function ModalElement(props) {
               </Modal.Title>
               <div className="mt-3">
                 <form>
-                  <h6>
+                  <h6 className="my-0">
                     <input
                       autoComplete="off"
                       className="px-2 pt-2"
                       name="title"
                       placeholder={props.element1}
-                      onChange={(e) => props.handleChange(e)}
+                      onChange={(e) => handleChange(e)}
+                      autoFocus
                     ></input>
                   </h6>
                   {props.element2 && (
-                    <p>
+                    <p className="my-2">
                       <input
                         autoComplete="off"
                         className="px-2"
                         name="content"
                         placeholder={props.element2}
-                        onChange={(e) => props.handleChange(e)}
+                        onChange={(e) => handleChange(e)}
                       ></input>
                     </p>
                   )}
@@ -76,10 +77,12 @@ function ModalElement(props) {
                     <p>
                       <input
                         autoComplete="off"
+                        type="date"
                         className="px-2"
                         name="date"
+                        style={{ colorScheme: "dark" }}
                         placeholder={props.element3}
-                        onChange={(e) => props.handleChange(e)}
+                        onChange={(e) => handleChange(e)}
                       ></input>
                     </p>
                   )}
@@ -90,11 +93,11 @@ function ModalElement(props) {
               <Button
                 className="rounded-5 px-4 rounded-5"
                 variant="secondary"
-                onClick={props.closeFunction}
+                onClick={closeFunction}
               >
                 Close
               </Button>
-              {props.empty ? BUTTON_1 : BUTTON_2}
+              {props.emptyElement ? BUTTON_1 : BUTTON_2}
             </Modal.Footer>
           </Row>
         </Container>

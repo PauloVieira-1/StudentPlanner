@@ -17,7 +17,7 @@ function ToolMenu() {
   const searchHandler = (e) => {
     e.preventDefault();
     let searchTerm = `https://www.google.com/search?q=${search}`;
-    if (search !== ""){
+    if (search !== "") {
       window.location.href = searchTerm;
     }
   };
@@ -28,21 +28,26 @@ function ToolMenu() {
         id="tool-menu"
         className="shadow py-2 ps-4 pe-2 d-flex align-items-center"
       >
-        <form id="search" onSubmit={searchHandler} className="flex-grow-1 me-2">
+        <form id="search" onSubmit={searchHandler} className="flex-grow-4 me-2">
           <input
             placeholder="Search"
             type="text"
             onChange={(e) => setSearch(e.target.value)}
+            autoFocus
           />
         </form>
         <Button
-          variant="outline-custom-color-orange"
+          variant="outline-custom-color-orange-2"
           type="submit"
           form="search"
           className="rounded-5 text-white px-2 mx-2 py-2 ms-auto"
         >
-          <img className="float-end  default-image " src={Seacrh} style={{ minWidth: "9px", minHeight: "9px" }} alt="Logo">
-          </img>
+          <img
+            className="float-end  default-image "
+            src={Seacrh}
+            style={{ minWidth: "9px", minHeight: "9px" }}
+            alt="Logo"
+          ></img>
         </Button>
       </div>
       <ModalElement

@@ -13,28 +13,24 @@ function App() {
   const [showSubjects, setShowSubjects] = useState(true);
   const [showApplications, setShowApplications] = useState(false);
   const [showReminders, setReminders] = useState(false);
-  
+
   const activateSubjects = () => {
     setShowSubjects(true);
     setShowApplications(false);
-    setReminders(false)
-
+    setReminders(false);
   };
 
   const activateApplications = () => {
     setShowSubjects(false);
     setShowApplications(true);
-    setReminders(false)
-
+    setReminders(false);
   };
 
   const activateReminders = () => {
     setShowSubjects(false);
     setShowApplications(false);
-    setReminders(true)
-
+    setReminders(true);
   };
-
 
   return (
     <Container fluid className="p-0 mt-0" style={{ height: "100%" }}>
