@@ -99,7 +99,7 @@ function QuickNotes() {
           >
             <img
               onClick={handleShow}
-              className="float-end pt-2 default-image"
+              className="float-end pt-2 default-image me-3"
               src={UnfilledPlus}
               style={{ minWidth: "22px", minHeight: "22px" }}
               alt="Logo"

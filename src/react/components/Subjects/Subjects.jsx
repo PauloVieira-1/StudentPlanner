@@ -3,7 +3,7 @@ import FilledPlus from "../../assets/plus-circle-fill.svg";
 import UnfilledPlus from "../../assets/plus-circle.svg";
 import { subjectModalContext } from "../../context/ModalContext.jsx";
 import ModalElement from "../ModalElement/Modal.jsx";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import SubjectBlock from "./SubjectBlock.jsx";
 import Empty from "../Other/Empty.jsx";
 
@@ -20,16 +20,22 @@ function Subjects() {
   const [showMesage, setShowMessage] = useState(true);
   const [subjectDisplay, setSubjectDisplay] = useState(false);
 
+  const initialized = useRef(false)
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    
-    const storedSubjects = localStorage.getItem("subjects");
-    console.log(subjectDisplay)
 
-    if (storedSubjects) {
-      setList(JSON.parse(storedSubjects));
+    if (!initialized.current){
+      initialized.current = true 
+      
+      const storedSubjects = localStorage.getItem("subjects");
+      console.log(subjectDisplay)
+  
+      if (storedSubjects) {
+        setList(JSON.parse(storedSubjects));
+      }
     }
 
   }, []);
@@ -44,7 +50,6 @@ function Subjects() {
   //         setList(JSON.parse(storedSubjects));
   //       }
   //     } catch (error) {
-  //       // Handle any errors
   //       console.error(error);
   //     }
   //   };
@@ -58,8 +63,8 @@ function Subjects() {
     } else {
       setSubjectDisplay(false);
     }
-    console.log(subjectDisplay)
-    console.log(list)
+    // console.log(subjectDisplay)
+    // console.log(list)
 
   }, [list]);
 
@@ -103,7 +108,7 @@ function Subjects() {
    */
 
   const removeSubject = (itemID) => {
-    const updatedList = list.filter((item) => item.key !== itemID);
+    const updatedList = [...list.filter((item) => item.key !== itemID)];
 
     setList(updatedList);
 

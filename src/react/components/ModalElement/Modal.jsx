@@ -63,7 +63,7 @@ function ModalElement({ closeFunction, saveChanges, handleChange, ...props }) {
                     ></input>
                   </h6>
                   {props.element3 && (
-                    <p>
+                    <p className="mb-3 mt-1">
                       <input
                         autoComplete="off"
                         type="date"
@@ -76,7 +76,7 @@ function ModalElement({ closeFunction, saveChanges, handleChange, ...props }) {
                     </p>
                   )}
                   {props.element2 && (
-                    <p className="my-1">
+                    <p className="mb-1">
                       <input
                         autoComplete="off"
                         className="px-2"

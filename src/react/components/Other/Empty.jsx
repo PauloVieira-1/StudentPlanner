@@ -2,8 +2,13 @@ import { Col } from "react-bootstrap";
 import Icon from "../../assets/calendar2.svg";
 import { Button } from "react-bootstrap";
 
+const buttonClickHandler = () => {
+  const message = "Test";
+  chrome.runtime.sendMessage({ event: "onActivation",  message});
+};
 
 function Empty(props) {
+
   return (
     <Col
       className="px-5 py-5 d-flex justify-content-center align-items-center flex-column text-center text-custom-color-grey-text-emphasis"
@@ -19,7 +24,7 @@ function Empty(props) {
         alt="Logo"
         style={{ minWidth: "80px", minHeight: "80px" }}
       ></img>
-      <Button id="test"className="mt-3">TEST STUFF</Button>
+      <Button id="test" className="mt-3" onClick={buttonClickHandler} >TEST STUFF</Button>
     </Col>
   );
 }
