@@ -1,5 +1,7 @@
 import { Col } from "react-bootstrap";
 import Icon from "../../assets/calendar2.svg";
+import { Button } from "react-bootstrap";
+
 
 function Empty(props) {
   return (
@@ -17,6 +19,7 @@ function Empty(props) {
         alt="Logo"
         style={{ minWidth: "80px", minHeight: "80px" }}
       ></img>
+      <Button id="test"className="mt-3">TEST STUFF</Button>
     </Col>
   );
 }

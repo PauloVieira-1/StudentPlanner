@@ -10,6 +10,7 @@ import { assignmentModelContext } from "../../context/ModalContext.jsx";
 const idGenerator = () => Math.random() + 1;
 
 function SubjectBlock({ remove, id, name }) {
+  
   const [assignmentShow, setAssignmentShow] = useState(false);
   const [taskShow, setTaskShow] = useState(false);
   const [task, setTask] = useState([]);
@@ -26,6 +27,7 @@ function SubjectBlock({ remove, id, name }) {
 
   useEffect(() => {
     const items = localStorage.getItem("subjects");
+    
     if (items) {
       const itemsP = JSON.parse(items);
       const matchingItem = itemsP.find((subject) => subject.key === id);
@@ -33,6 +35,7 @@ function SubjectBlock({ remove, id, name }) {
         setSubjectData([matchingItem]);
       }
     }
+
   }, [id]);
 
   useEffect(() => {
@@ -51,7 +54,7 @@ function SubjectBlock({ remove, id, name }) {
         tempSubjects.filter((item) => item.key !== id).concat(subjects),
       ),
     );
-  }, [subjects, id]);
+  }, [subjects]);
 
   /**
    *
@@ -88,6 +91,7 @@ function SubjectBlock({ remove, id, name }) {
 
       return preTaskData;
     });
+    setShowMessage(false);
   };
 
   /**
@@ -96,7 +100,7 @@ function SubjectBlock({ remove, id, name }) {
    * @param {string} label
    */
   const addLabel = (itemID, object, label) => {
-    if (!object?.title || !object?.content) {
+    if (!object?.title || !object?.date) {
       console.error("Invalid object:", object);
       return;
     }
@@ -189,7 +193,7 @@ function SubjectBlock({ remove, id, name }) {
                     assignmentId={assignment.key}
                     key={assignment.key}
                     title={assignment.title}
-                    content={assignment.content}
+                    date={assignment.date}
                     type="assignment"
                     remove={removeLabel}
                   />
@@ -224,7 +228,7 @@ function SubjectBlock({ remove, id, name }) {
                     assignmentId={task.key}
                     key={task.key}
                     title={task.title}
-                    content={task.content}
+                    date={task.date}
                     type="task"
                     remove={removeLabel}
                   />
@@ -264,7 +268,7 @@ function SubjectBlock({ remove, id, name }) {
           title="Add Assignment"
           element1="Name"
           show={assignmentShow}
-          element2="Date"
+          element3="Date"
           closeFunction={handleAssignmentClose}
           saveChanges={() => addLabel(id, currentObject, "assignment")}
           handleChange={handleInputChange}
@@ -277,7 +281,7 @@ function SubjectBlock({ remove, id, name }) {
           handleChange={handleInputChangeTask}
           title="Add Task"
           element1="Name"
-          element2="Date"
+          element3="Date"
           emptyElement={showMesage}
         />
       </assignmentModelContext.Provider>

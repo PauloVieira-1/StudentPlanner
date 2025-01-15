@@ -18,7 +18,7 @@
     "newtab": "index.html"
   },
 
-  "permissions": ["tabs", "activeTab", "storage", "scripting", "favicon"],
+  "permissions": ["tabs", "activeTab", "storage", "scripting", "favicon", "notifications", "alarms"],
 
   "host_permissions": ["http://*/*", "https://*/*"],
 

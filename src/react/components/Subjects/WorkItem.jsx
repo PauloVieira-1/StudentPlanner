@@ -8,7 +8,7 @@ function WorkItem(props) {
       <Row>
         <Col xs={11}>
           <h6>{props.title}</h6>
-          <p>{props.content}</p>
+          <p>{props.date}</p>
         </Col>
         <Col className="d-flex align-items-center justify-content-center p-0 ">
           <div className="d-flex align-items-center justify-content-center image-container float-end">

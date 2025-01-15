@@ -5,9 +5,9 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
 function ModalElement({ closeFunction, saveChanges, handleChange, ...props }) {
-  const renderTooltip = (props, element1, element2) => (
+  const renderTooltip = (props, element1, element3) => (
     <Tooltip id="button-tooltip" className="bg-custom-color-grey" {...props}>
-      {`Must add ${element1} ${element2 ? "and" : ""} ${element2 ? element2 : ""} to save`}
+      {`Must add ${element1} ${element3 ? "and" : ""} ${element3 ? element3 : ""} to save`}
     </Tooltip>
   );
 
@@ -15,7 +15,7 @@ function ModalElement({ closeFunction, saveChanges, handleChange, ...props }) {
     <OverlayTrigger
       placement="right"
       delay={{ show: 250, hide: 400 }}
-      overlay={renderTooltip(props, props.element1, props.element2)}
+      overlay={renderTooltip(props, props.element1, props.element3)}
     >
       <Button
         className="text-white rounded-5 px-4"
@@ -55,33 +55,33 @@ function ModalElement({ closeFunction, saveChanges, handleChange, ...props }) {
                   <h6 className="my-0">
                     <input
                       autoComplete="off"
-                      className="px-2 pt-2"
+                      className="px-2 "
                       name="title"
                       placeholder={props.element1}
                       onChange={(e) => handleChange(e)}
                       autoFocus
                     ></input>
                   </h6>
-                  {props.element2 && (
-                    <p className="my-2">
-                      <input
-                        autoComplete="off"
-                        className="px-2"
-                        name="content"
-                        placeholder={props.element2}
-                        onChange={(e) => handleChange(e)}
-                      ></input>
-                    </p>
-                  )}
                   {props.element3 && (
                     <p>
                       <input
                         autoComplete="off"
                         type="date"
-                        className="px-2"
+                        className="px-2 pt-2"
                         name="date"
                         style={{ colorScheme: "dark" }}
                         placeholder={props.element3}
+                        onChange={(e) => handleChange(e)}
+                      ></input>
+                    </p>
+                  )}
+                  {props.element2 && (
+                    <p className="my-1">
+                      <input
+                        autoComplete="off"
+                        className="px-2"
+                        name="content"
+                        placeholder={props.element2}
                         onChange={(e) => handleChange(e)}
                       ></input>
                     </p>

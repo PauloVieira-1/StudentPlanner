@@ -24,12 +24,33 @@ function Subjects() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
+    
     const storedSubjects = localStorage.getItem("subjects");
+    console.log(subjectDisplay)
 
     if (storedSubjects) {
       setList(JSON.parse(storedSubjects));
     }
+
   }, []);
+
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const storedSubjects = await localStorage.getItem("subjects");
+  //       console.log(subjectDisplay);
+  //       if (storedSubjects) {
+  //         setList(JSON.parse(storedSubjects));
+  //       }
+  //     } catch (error) {
+  //       // Handle any errors
+  //       console.error(error);
+  //     }
+  //   };
+  
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
     if (list !== null && list.length > 0) {
@@ -37,6 +58,9 @@ function Subjects() {
     } else {
       setSubjectDisplay(false);
     }
+    console.log(subjectDisplay)
+    console.log(list)
+
   }, [list]);
 
   /**
