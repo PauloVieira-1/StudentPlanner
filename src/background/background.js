@@ -6,11 +6,11 @@ chrome.action.onClicked.addListener((tab) => {
 
 const createNotification = (message) => {
   chrome.notifications.create({
-		title: "TEST",
-		message,
-		type: "basic",
+    title: "TEST",
+    message,
+    type: "basic",
     iconUrl: "Logo1.png",
-	});
+  });
 };
 
 chrome.runtime.onMessage.addListener((request) => {
@@ -18,6 +18,8 @@ chrome.runtime.onMessage.addListener((request) => {
 
   if (request.event === "onActivation") {
     createNotification(request.message);
+    this.registration.showNotification("Test", {
+      body: "test",
+    });
   }
-  
 });

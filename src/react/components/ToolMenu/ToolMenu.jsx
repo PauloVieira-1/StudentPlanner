@@ -34,18 +34,20 @@ function ToolMenu() {
             type="text"
             onChange={(e) => setSearch(e.target.value)}
             autoFocus
+            style={{ width: "100%", height: "30px" }}
           />
         </form>
         <Button
           variant="outline-custom-color-orange-2"
           type="submit"
           form="search"
-          className="rounded-5 text-white px-2 mx-2 py-2 ms-auto"
+          className="rounded-5 text-white px-2 mx-2 py-2 ms-auto h-100"
+          style={{ Width: "45px", Height: "45px" }}
         >
           <img
             className="float-end  default-image "
             src={Seacrh}
-            style={{ minWidth: "9px", minHeight: "9px" }}
+            style={{ maxWidth: "13px", maxHeight: "13px" }}
             alt="Logo"
           ></img>
         </Button>

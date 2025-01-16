@@ -17,17 +17,14 @@
 .transition-up {
   animation-name: transition-up;
   animation-duration: 0.7s;
-  animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  transition: ease-out;
-  z-index: 0;
+  z-index: 1; /* Bring active element to the front */
 }
 
 @keyframes transition-up {
   from {
-    visibility: none;
     opacity: 0;
-    transform: translateY(750px);
+    transform: translateY(100%);
   }
   to {
     opacity: 1;
@@ -38,78 +35,29 @@
 .transition-down {
   animation-name: transition-down;
   animation-duration: 0.7s;
-  animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  transition: ease-out;
-  z-index: 0;
+  z-index: 0; /* Push inactive element to the back */
 }
 
 @keyframes transition-down {
   from {
     opacity: 1;
-    height: 100%;
-    transform: translateY(0px);
+    transform: translateY(0);
   }
   to {
     opacity: 0;
-    height: 0;
-    transform: translateY(750px);
-    visibility: hidden;
+    transform: translateY(100%);
   }
 }
 
-.transition-left {
-  animation-name: transition-left;
-  animation-duration: 0.7s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  transition: ease-out;
-  z-index: 0;
+.transition-reset {
+  transform: translate(0, 0); /* Reset position to default */
 }
 
-@keyframes transition-left {
-  from {
-    opacity: 0;
-    height: 0;
-    transform: translateX(750px);
-    visibility: hidden;
-    display: none;
-  }
-  to {
-    height: 100%;
-    opacity: 1;
-    display: block;
-    transform: translateX(0px);
-  }
+.hidden {
+  display: none; /* Ensure hidden elements don't affect layout */
 }
 
-.transition-left {
-  animation-name: transition-left;
-  animation-duration: 0.7s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  transition: ease-out;
-  z-index: 0;
+.visible {
+  display: block; /* Show active elements */
 }
-
-/* @keyframes transition-reset {
-    from {
-      opacity: 0;
-      visibility: hidden;
-
-    }
-    to {
-      opacity: 1;
-    }
-  } 
-
-
-  .transition-reset {
-    animation-name: transition-left;
-    transition-delay: 0.8s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    transition: ease-out;
-    z-index: 0;
-  
-  } */

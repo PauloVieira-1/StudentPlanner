@@ -10,7 +10,6 @@ import { assignmentModelContext } from "../../context/ModalContext.jsx";
 const idGenerator = () => Math.random() + 1;
 
 function SubjectBlock({ remove, id, name }) {
-  
   const [assignmentShow, setAssignmentShow] = useState(false);
   const [taskShow, setTaskShow] = useState(false);
   const [task, setTask] = useState([]);
@@ -27,7 +26,7 @@ function SubjectBlock({ remove, id, name }) {
 
   useEffect(() => {
     const items = localStorage.getItem("subjects");
-    
+
     if (items) {
       const itemsP = JSON.parse(items);
       const matchingItem = itemsP.find((subject) => subject.key === id);
@@ -35,7 +34,6 @@ function SubjectBlock({ remove, id, name }) {
         setSubjectData([matchingItem]);
       }
     }
-
   }, [id]);
 
   useEffect(() => {

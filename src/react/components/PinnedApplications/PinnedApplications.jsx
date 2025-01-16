@@ -105,7 +105,7 @@ function PinnedApplications() {
         <Container>
           <Row>
             <Col xs={11}>
-              <Row style={{ overflowY: "scroll", maxHeight: "570px" }}>
+              <Row style={{ overflowY: "scroll", maxHeight: "600px" }}>
                 {emptyApplications ? (
                   list.map((item) => {
                     return (

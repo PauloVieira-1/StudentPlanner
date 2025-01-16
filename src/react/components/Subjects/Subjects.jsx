@@ -20,26 +20,22 @@ function Subjects() {
   const [showMesage, setShowMessage] = useState(true);
   const [subjectDisplay, setSubjectDisplay] = useState(false);
 
-  const initialized = useRef(false)
+  const initialized = useRef(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
+    if (!initialized.current) {
+      initialized.current = true;
 
-    if (!initialized.current){
-      initialized.current = true 
-      
       const storedSubjects = localStorage.getItem("subjects");
-      console.log(subjectDisplay)
-  
+
       if (storedSubjects) {
         setList(JSON.parse(storedSubjects));
       }
     }
-
   }, []);
-
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -53,7 +49,7 @@ function Subjects() {
   //       console.error(error);
   //     }
   //   };
-  
+
   //   fetchData();
   // }, []);
 
@@ -65,7 +61,6 @@ function Subjects() {
     }
     // console.log(subjectDisplay)
     // console.log(list)
-
   }, [list]);
 
   /**

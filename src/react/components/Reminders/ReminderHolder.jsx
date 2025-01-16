@@ -67,10 +67,10 @@ function ReminderHolder() {
 
       setReminder(newReminders);
       localStorage.setItem("reminders", JSON.stringify(newReminders));
+      setReminderShow(false);
+      setReminderData({ ...INITIAL_VALUES });
+      setShowMessage(true);
     }
-
-    setReminderShow(false);
-    setShowMessage(true);
   };
 
   /**
@@ -167,7 +167,7 @@ function ReminderHolder() {
         element1="Title"
         element2="Reminder"
         element3="Date"
-        empty={showMesage}
+        emptyElement={showMesage}
       ></ModalElement>
     </reminderModelContext.Provider>
   );
