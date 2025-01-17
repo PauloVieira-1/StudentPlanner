@@ -18,8 +18,5 @@ chrome.runtime.onMessage.addListener((request) => {
 
   if (request.event === "onActivation") {
     createNotification(request.message);
-    this.registration.showNotification("Test", {
-      body: "test",
-    });
   }
 });

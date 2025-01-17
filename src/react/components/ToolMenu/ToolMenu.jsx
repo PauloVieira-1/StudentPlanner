@@ -2,7 +2,8 @@ import "./ToolMenu.css";
 import { Button } from "react-bootstrap";
 import ModalElement from "../ModalElement/Modal.jsx";
 import { useState } from "react";
-import Seacrh from "../../assets/search.svg";
+import Search from "../../assets/search.svg";
+import SearchOrange from "../../assets/search-orange.svg";
 import { subjectModalContext } from "../../context/ModalContext.jsx";
 import { Container } from "react-bootstrap";
 
@@ -26,7 +27,7 @@ function ToolMenu() {
     <subjectModalContext.Provider value={{ show: false }}>
       <div
         id="tool-menu"
-        className="shadow py-2 ps-4 pe-2 d-flex align-items-center"
+        className="shadow py-0 ps-4 pe-2 d-flex align-items-center"
       >
         <form id="search" onSubmit={searchHandler} className="flex-grow-4 me-2">
           <input
@@ -41,15 +42,23 @@ function ToolMenu() {
           variant="outline-custom-color-orange-2"
           type="submit"
           form="search"
-          className="rounded-5 text-white px-2 mx-2 py-2 ms-auto h-100"
-          style={{ Width: "45px", Height: "45px" }}
+          className="rounded-5 text-white px-2 mx-2 py-2 ms-auto h-100 image-container"
+          style={{ Width: "50px", Height: "50px" }}
         >
-          <img
-            className="float-end  default-image "
-            src={Seacrh}
-            style={{ maxWidth: "13px", maxHeight: "13px" }}
-            alt="Logo"
-          ></img>
+          <div className="">
+            <img
+              className="float-end hover-image "
+              src={Search}
+              style={{ maxWidth: "13px", maxHeight: "13px" }}
+              alt="Logo"
+            ></img>
+            <img
+              className="float-end default-image "
+              src={SearchOrange}
+              style={{ maxWidth: "13px", maxHeight: "13px" }}
+              alt="Logo"
+            ></img>
+          </div>
         </Button>
       </div>
       <ModalElement

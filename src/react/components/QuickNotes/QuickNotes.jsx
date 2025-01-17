@@ -88,18 +88,18 @@ function QuickNotes() {
         style={{ maxHeight: "20px !important" }}
       >
         <Row className="">
-          <Col className="d-flex align-items-center me-0 pe-0" xs={9}>
+          <Col className="d-flex align-items-center me-0 pe-0" xs={8}>
             <h5 className="text-white pt-3 pb-1 px-2 text-start bg-custom-color-grey-light rounded-3">
               Quick Notes
             </h5>
           </Col>
           <Col
-            xs={3}
-            className="d-flex align-items-center image-container float-end"
+            xs={4}
+            className="d-flex align-items-center justify-content-center image-container text-center"
           >
             <img
               onClick={handleShow}
-              className="float-end pt-2 default-image me-3"
+              className="float-end pt-2 default-image "
               src={UnfilledPlus}
               style={{ minWidth: "22px", minHeight: "22px" }}
               alt="Logo"

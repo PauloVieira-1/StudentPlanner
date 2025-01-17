@@ -15,13 +15,13 @@ function WorkItem(props) {
             <img
               className="float-end default-image hover-trash"
               src={emptyTrash}
-              style={{ minWidth: "25px", minHeight: "25px" }}
+              style={{ minWidth: "20px", minHeight: "20px" }}
               alt="Logo"
             ></img>
             <img
               className="float-end hover-image"
               src={fullTrash}
-              style={{ minWidth: "25px", minHeight: "25px" }}
+              style={{ minWidth: "20px", minHeight: "20px" }}
               alt="Logo"
               onClick={() =>
                 props.remove(props.item, props.assignmentId, props.type)
