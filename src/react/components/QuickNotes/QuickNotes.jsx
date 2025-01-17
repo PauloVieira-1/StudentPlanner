@@ -6,6 +6,7 @@ import NoteItem from "./NoteItem.jsx";
 import ModalElement from "../ModalElement/Modal.jsx";
 import { useEffect, useState, useRef } from "react";
 import { ModalContext } from "../../context/ModalContext.jsx";
+import Note from "../test.jsx"
 
 const INITIAL_VALUES = Object.freeze({
   title: "",
@@ -80,6 +81,17 @@ function QuickNotes() {
       JSON.stringify(List.filter((item) => item.key !== itemId)),
     );
   };
+
+// TESTING // 
+
+const n = new Note("test_title", "10");
+
+console.log(n.title)
+console.log(typeof(n.toNumber()))
+console.log(n.print())
+
+// TESTING //
+
 
   return (
     <ModalContext.Provider value={{ show: false }}>

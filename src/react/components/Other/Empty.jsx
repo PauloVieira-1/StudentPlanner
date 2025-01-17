@@ -23,7 +23,7 @@ function Empty(props) {
         alt="Logo"
         style={{ minWidth: "80px", minHeight: "80px" }}
       ></img>
-      <Button id="test" className="mt-3" onClick={buttonClickHandler} >TEST STUFF</Button>
+      {/* <Button id="test" className="mt-3" onClick={buttonClickHandler} >TEST STUFF</Button> */}
     </Col>
   );
 }

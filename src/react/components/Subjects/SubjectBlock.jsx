@@ -94,7 +94,7 @@ function SubjectBlock({ remove, id, name }) {
 
   /**
    * @param {string} itemID
-   * @param {{title:string}} object ////////! This is the object that is being added to the list
+   * @param {{title:string}} object
    * @param {string} label
    */
   const addLabel = (itemID, object, label) => {
