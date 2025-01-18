@@ -40,6 +40,7 @@ function ModalElement({ closeFunction, saveChanges, handleChange, ...props }) {
       Save Note
     </Button>
   );
+  
 
   return (
     <>

@@ -70,8 +70,21 @@ function ReminderHolder() {
       setReminderShow(false);
       setReminderData({ ...INITIAL_VALUES });
       setShowMessage(true);
+
+      sendMessageBackground(reminderData.date);
+      
     }
   };
+
+  /**
+   * 
+   * @param {String} date
+   */
+
+  const sendMessageBackground = (date) => {
+    chrome.runtime.sendMessage({ event: "sendDate", date });
+  };
+
 
   /**
    *
