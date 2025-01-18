@@ -7,11 +7,14 @@ chrome.action.onClicked.addListener((tab) => {
 /**
  * @param {Date} date -
  */
-const createAlarm = (date) => {
+const createAlarm = (date, time) => {
   
-  const dateTime = (new Date(date)).getTime();
+  console.log(date);
+  console.log(time);
+
+  const dateTime = new Date(`${date}T${time}:00`).getTime();
   console.log(dateTime);
-  console.log(dateTime);
+  
 
   chrome.alarms.create('NOTIFICATION', {
     when: dateTime,  
@@ -31,13 +34,8 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log("Received message:", request);
   
-  if (request.event === "onActivation") {
-    createNotification(request.message);
-    sendResponse({ status: "Notification triggered" });
-  }
   if (request.event === "sendDate") {
-    // console.log(`WORKED: ${request.date}`);
-    createAlarm(request.date);
+    createAlarm(request.date, request.time);
     sendResponse({ status: "Notification triggered" });}
   });
   

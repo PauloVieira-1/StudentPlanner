@@ -76,6 +76,19 @@ function ModalElement({ closeFunction, saveChanges, handleChange, ...props }) {
                       ></input>
                     </p>
                   )}
+                      {props.element4 && (
+                        <p className="mb-">
+                          <input
+                            autoComplete="off"
+                            type="time"
+                            style={{ colorScheme: "dark" }}
+                            className="px-2"
+                            name="time"
+                            placeholder={props.element2}
+                            onChange={(e) => handleChange(e)}
+                          ></input>
+                        </p>
+                      )}
                   {props.element2 && (
                     <p className="mb-1">
                       <input

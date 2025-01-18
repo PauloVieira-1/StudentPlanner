@@ -11,6 +11,7 @@ const INITIAL_VALUES = Object.freeze({
   title: "",
   content: "",
   date: "",
+  time: "",
   priority: "No Priority",
 });
 
@@ -63,15 +64,17 @@ function ReminderHolder() {
       reminderData.content !== "" ||
       reminderData.date !== ""
     ) {
+      
       const newReminders = [...reminders, { key: current_id, ...reminderData }];
+
+      console.log(reminderData)
 
       setReminder(newReminders);
       localStorage.setItem("reminders", JSON.stringify(newReminders));
       setReminderShow(false);
       setReminderData({ ...INITIAL_VALUES });
       setShowMessage(true);
-
-      sendMessageBackground(reminderData.date);
+      sendMessageBackground(reminderData.date, reminderData.time);
       
     }
   };
@@ -79,10 +82,11 @@ function ReminderHolder() {
   /**
    * 
    * @param {String} date
+   * @param {String} time
    */
 
-  const sendMessageBackground = (date) => {
-    chrome.runtime.sendMessage({ event: "sendDate", date });
+  const sendMessageBackground = (date, time) => {
+    chrome.runtime.sendMessage({ event: "sendDate", date, time});
   };
 
 
@@ -136,7 +140,7 @@ function ReminderHolder() {
                     id={item.key}
                     title={item.title}
                     content={item.content}
-                    date={item.date}
+                    date={item.time}
                     priority={item.priority}
                     changePriority={setPriority}
                     removeReminder={removeReminder}
@@ -180,6 +184,7 @@ function ReminderHolder() {
         element1="Title"
         element2="Reminder"
         element3="Date"
+        element4="Time"
         emptyElement={showMesage}
       ></ModalElement>
     </reminderModelContext.Provider>
