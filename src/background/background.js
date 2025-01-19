@@ -7,18 +7,15 @@ chrome.action.onClicked.addListener((tab) => {
 /**
  * @param {Date} date -
  */
-const createAlarm = (date, time) => {
+const createAlarm = (date, time, name) => {
   
-  console.log(date);
-  console.log(time);
-
   const dateTime = new Date(`${date}T${time}:00`).getTime();
-  console.log(dateTime);
   
-
-  chrome.alarms.create('NOTIFICATION', {
+  chrome.alarms.create((name).split(" ").join("_"), {
     when: dateTime,  
-})
+  }, () => {
+      
+  })
 }
 
 /**
@@ -26,17 +23,20 @@ const createAlarm = (date, time) => {
  */
 
 chrome.alarms.onAlarm.addListener((alarm) => {
-  if (alarm.name === 'NOTIFICATION') {
-   createNotification("Test");
-  }
+   createNotification(alarm.name.split("_").join(" "));
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log("Received message:", request);
   
   if (request.event === "sendDate") {
-    createAlarm(request.date, request.time);
-    sendResponse({ status: "Notification triggered" });}
+    createAlarm(request.date, request.time, request.reminder);
+    sendResponse({ status: "Notification triggered" });
+  } else if (request.event === "removeDate") {
+    chrome.alarms.clear(request.reminder.split(" ").join("_"));
+    sendResponse({ status: "Notification removed" });
+  }
+  
   });
   
   /**
@@ -45,8 +45,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
    */
   
   const createNotification = (message) => {
-    chrome.notifications.create("test", {
-      title: "TEST",
+    chrome.notifications.create(`Notification_${message}`, {
+      title: "Class Compass",
       message,
       type: "basic",
       iconUrl: "Logo1.png",  

@@ -67,14 +67,14 @@ function ReminderHolder() {
       
       const newReminders = [...reminders, { key: current_id, ...reminderData }];
 
-      console.log(reminderData)
+      // console.log(reminderData)
 
       setReminder(newReminders);
       localStorage.setItem("reminders", JSON.stringify(newReminders));
       setReminderShow(false);
       setReminderData({ ...INITIAL_VALUES });
       setShowMessage(true);
-      sendMessageBackground(reminderData.date, reminderData.time);
+      sendMessageBackground(reminderData.date, reminderData.time, reminderData.title);
       
     }
   };
@@ -85,8 +85,8 @@ function ReminderHolder() {
    * @param {String} time
    */
 
-  const sendMessageBackground = (date, time) => {
-    chrome.runtime.sendMessage({ event: "sendDate", date, time});
+  const sendMessageBackground = (date, time, reminder) => {
+    chrome.runtime.sendMessage({ event: "sendDate", date, time, reminder});
   };
 
 
@@ -96,10 +96,21 @@ function ReminderHolder() {
    */
 
   const removeReminder = (reminderId) => {
+
+    const foundReminder = reminders.find((item) => item.key === reminderId);
+    sendMessageBackgroundRemove(foundReminder.date, foundReminder.time, foundReminder.title);
+
     const newReminders = reminders.filter((item) => item.key !== reminderId);
     setReminder(newReminders);
     localStorage.setItem("reminders", JSON.stringify(newReminders));
+
   };
+
+  const sendMessageBackgroundRemove = (date, time, reminder) => {
+    chrome.runtime.sendMessage({ event: "removeDate", date, time, reminder});
+  };
+
+
 
   /**
    * @param {Object} reminderkey
@@ -139,7 +150,8 @@ function ReminderHolder() {
                     key={item.key}
                     id={item.key}
                     title={item.title}
-                    content={item.content}
+                    content={item.date
+                    }
                     date={item.time}
                     priority={item.priority}
                     changePriority={setPriority}
@@ -181,8 +193,8 @@ function ReminderHolder() {
         saveChanges={addReminder}
         handleChange={handleInputChange}
         title="Add a Reminder"
-        element1="Title"
-        element2="Reminder"
+        element1="Reminder"
+        // element2="Reminder"
         element3="Date"
         element4="Time"
         emptyElement={showMesage}
