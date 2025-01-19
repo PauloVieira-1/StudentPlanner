@@ -157,7 +157,7 @@ function Subjects() {
         saveChanges={handleAddtoDatabase}
         handleChange={handleInputChange}
         title="Add a Subject"
-        element1="Name"
+        element1="Subject"
         emptyElement={showMesage}
       />
     </subjectModalContext.Provider>

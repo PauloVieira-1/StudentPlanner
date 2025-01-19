@@ -153,7 +153,7 @@ function PinnedApplications() {
           saveChanges={addApp}
           handleChange={handleInputChange}
           title="Add an Application"
-          element1="Name"
+          element1="Application"
           element2="Link"
           emptyElement={showMesage}
         />

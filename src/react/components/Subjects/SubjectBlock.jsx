@@ -264,7 +264,7 @@ function SubjectBlock({ remove, id, name }) {
         </Container>
         <ModalElement
           title="Add an Assignment"
-          element1="Name"
+          element1="Assignment"
           show={assignmentShow}
           element3="Date"
           closeFunction={handleAssignmentClose}
@@ -278,7 +278,7 @@ function SubjectBlock({ remove, id, name }) {
           saveChanges={() => addLabel(id, currentObject, "task")}
           handleChange={handleInputChangeTask}
           title="Add a Task"
-          element1="Name"
+          element1="Task"
           element3="Date"
           emptyElement={showMesage}
         />

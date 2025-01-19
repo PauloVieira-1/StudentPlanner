@@ -7,7 +7,8 @@ import Tooltip from "react-bootstrap/Tooltip";
 function ModalElement({ closeFunction, saveChanges, handleChange, ...props }) {
   const renderTooltip = (props, element1, element3) => (
     <Tooltip id="button-tooltip" className="bg-custom-color-grey" {...props}>
-      {`Must add ${element1} ${element3 ? "and" : ""} ${element3 ? element3 : ""} to save`}
+      {/* {`Must add ${element1} ${element3 ? "and" : ""} ${element3 ? element3 : ""} to save`} */}
+      {`Must input ${element1.toLowerCase()} to save`}
     </Tooltip>
   );
 

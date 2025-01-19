@@ -25,10 +25,11 @@ function ReminderHolder() {
   const [reminderDisplay, setReminderDisplay] = useState(false);
 
   useEffect(() => {
-    const reminders = localStorage.getItem("reminders");
+    const reminders = JSON.parse(localStorage.getItem("reminders"))
 
     if (reminders || reminders !== undefined) {
-      setReminder(JSON.parse(reminders) || []);
+        const sorted = reminders.sort((a,b) => new Date(a.date) - new Date(b.date))
+        setReminder(sorted)
     }
   }, []);
 
