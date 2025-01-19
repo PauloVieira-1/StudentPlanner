@@ -62,7 +62,7 @@ function App() {
                 component={<PinnedApplications />}
               />
               <FeatureBox
-                title="Reminder"
+                title="Reminders"
                 active={showReminders}
                 component={<ReminderHolder />}
               />

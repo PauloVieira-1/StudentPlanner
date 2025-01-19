@@ -156,7 +156,7 @@ function Subjects() {
         closeFunction={handleClose}
         saveChanges={handleAddtoDatabase}
         handleChange={handleInputChange}
-        title="What subject would you like to add?"
+        title="Add a Subject"
         element1="Name"
         emptyElement={showMesage}
       />

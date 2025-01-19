@@ -152,7 +152,7 @@ function PinnedApplications() {
           closeFunction={handleClose}
           saveChanges={addApp}
           handleChange={handleInputChange}
-          title="What link would you like to add?"
+          title="Add an Application"
           element1="Name"
           element2="Link"
           emptyElement={showMesage}
